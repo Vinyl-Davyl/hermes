@@ -35,7 +35,7 @@ Catchup never asks you to attach `PROMPT.md`. `catchup fork claude --into codex`
 ## Do I have to install Hermes globally?
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+curl -fsSL https://tryhermes.pages.dev/install | sh
 ```
 
 That puts `hermes` on your PATH. From a checkout, `./bin/hermes` after `go build` is the same program.

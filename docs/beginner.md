@@ -39,7 +39,7 @@ To make that permanent, add the `export PATH=...` line to `~/.zshrc`.
 You do **not** publish to npm. A friend can:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+curl -fsSL https://tryhermes.pages.dev/install | sh
 ```
 
 ## Test without installing globally

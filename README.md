@@ -11,8 +11,10 @@ No MCP. No plugin. No cloud. One Go binary.
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+curl -fsSL https://tryhermes.pages.dev/install | sh
 ```
+
+Site: [tryhermes.pages.dev](https://tryhermes.pages.dev)
 
 Then open a new terminal and run `hermes doctor`.
 
