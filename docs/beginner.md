@@ -36,15 +36,11 @@ hermes doctor
 
 To make that permanent, add the `export PATH=...` line to `~/.zshrc`.
 
-You do **not** publish to npm. You do **not** need a website. A friend can:
+You do **not** publish to npm. A friend can:
 
 ```bash
-git clone <your-repo>
-cd Hermes
-make install
+curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
 ```
-
-Later, if you want one-line installs for strangers, you put a release binary on GitHub Releases. That is optional. It is not npm.
 
 ## Test without installing globally
 
