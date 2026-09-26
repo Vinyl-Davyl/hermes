@@ -1,0 +1,11 @@
+{
+  "version": "1",
+  "tool": "hermes",
+  "created_at": "2026-09-26T00:00:00Z",
+  "repo": "github.com/Vinyl-Davyl/hermes",
+  "branch": "main",
+  "message": "Add sample handoff",
+  "from_agent": "hermes",
+  "sources": ["git", "manual", "hermes"],
+  "hermes_version": "0.3.1"
+}
