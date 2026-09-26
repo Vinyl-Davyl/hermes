@@ -1,7 +1,7 @@
 PREFIX ?= $(HOME)/.local
 BIN := bin/hermes
 
-.PHONY: test build install go-install site landing clean
+.PHONY: test build install go-install site landing pages-assets clean
 
 test:
 	go test ./...
@@ -22,6 +22,10 @@ site: build
 	./$(BIN) site
 
 landing: site
+
+pages-assets:
+	cp scripts/install.sh web/install
+	cp scripts/install.sh web/install.sh
 
 clean:
 	rm -rf bin
