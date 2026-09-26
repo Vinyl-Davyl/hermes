@@ -40,11 +40,20 @@ code { font-family: var(--mono); font-size: 0.88em; }
 }
 .nav a { text-decoration: none; color: var(--mute); }
 .nav a:hover { color: var(--ink); }
-.logo {
+.brand, .logo {
   font-weight: 700;
   letter-spacing: -0.04em;
   text-decoration: none;
   color: inherit;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.brand img {
+  display: block;
+  border-radius: 7px;
 }
 
 .hero {
@@ -76,12 +85,23 @@ h2 {
   letter-spacing: -0.03em;
 }
 h3 { margin: 0 0 0.45rem; font-size: 1.05rem; }
-.lede, .or, .fine, .kicker {
+.lede, .fine, .kicker {
   color: var(--mute);
   margin: 0 auto 1.4rem;
   max-width: 34rem;
 }
-.or { margin: 1.3rem 0 0.55rem; font-size: 0.95rem; }
+.cmd-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.or {
+  margin: 1.25rem 0 0.2rem;
+  color: var(--mute);
+  font-size: 0.95rem;
+  text-align: center;
+}
 .kicker {
   font-size: 0.78rem;
   letter-spacing: 0.12em;
@@ -220,36 +240,42 @@ h3 { margin: 0 0 0.45rem; font-size: 1.05rem; }
 }
 .beats li.on { color: var(--ink); font-weight: 650; }
 
+.band {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding-left: clamp(1.1rem, 5vw, 3.5rem);
+  padding-right: clamp(1.1rem, 5vw, 3.5rem);
+}
 .facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 1rem;
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: 0 clamp(1.1rem, 5vw, 3.5rem) 3.4rem;
+  padding-bottom: 3.4rem;
 }
 .facts article {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 1.2rem 1.15rem 1.3rem;
-  min-height: 9.5rem;
 }
-.facts h3 { min-height: 1.4em; }
+.facts h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.02rem;
+  white-space: nowrap;
+}
 .facts p {
   margin: 0;
   color: var(--mute);
   font-size: 0.95rem;
-  flex: 1;
+  line-height: 1.45;
+  min-height: calc(1.45em * 2);
 }
 
-.faq {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 0 clamp(1.1rem, 5vw, 3.5rem) 3.6rem;
-}
+.faq { padding-bottom: 3.6rem; }
 .faq h2 { margin-bottom: 1.4rem; }
 .faq dl { margin: 0; }
 .faq dl > div {
@@ -279,6 +305,17 @@ footer {
   gap: 2rem;
   max-width: 64rem;
   margin: 0 auto;
+}
+.foot-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  max-width: 28rem;
+}
+.foot-brand img {
+  display: block;
+  border-radius: 10px;
+  flex-shrink: 0;
 }
 footer .logo {
   margin: 0 0 0.45rem;
@@ -323,8 +360,12 @@ footer .tag { margin: 0; color: #9a958c; }
 .foot-meta a:hover { color: #fff; }
 
 @media (max-width: 800px) {
-  .facts { grid-template-columns: 1fr; }
+  .facts {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
   .facts article { min-height: 0; }
+  .facts h3 { white-space: normal; }
   .foot-top {
     flex-direction: column;
     align-items: stretch;

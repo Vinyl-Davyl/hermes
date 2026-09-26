@@ -1,146 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hermes — messenger for coding agents</title>
-  <meta name="description" content="Local CLI that packs unfinished work and hands it to the next coding agent. No plugin. No cloud." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="nav">
-    <a class="logo" href="#top">hermes</a>
-    <nav>
-      <a href="#demo">Demo</a>
-      <a href="#questions">Questions</a>
-      <a href="#install">Install</a>
-      <a href="https://github.com/Vinyl-Davyl/hermes">GitHub</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hermes — messenger for coding agents</title>
+    <meta
+      name="description"
+      content="Local CLI that packs unfinished work and hands it to the next coding agent. No plugin. No cloud."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#top">
+        <img src="favicon.svg" width="32" height="32" alt="" />
+        <span>hermes</span>
+      </a>
+      <nav>
+        <a href="#demo">Demo</a>
+        <a href="#questions">Questions</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/Vinyl-Davyl/hermes">GitHub</a>
+      </nav>
+    </header>
 
-  <main id="top">
-    <section class="hero">
-      <p class="badge">Open source · local-first · MIT</p>
-      <h1>Don’t start the next chat from zero.</h1>
-      <p class="lede">
-        When one coding agent stops, Hermes packs the work on your disk
-        and hands it to the next. Same folder. Same machine.
-      </p>
-      <div class="cmd-wrap">
-        <div class="cmd" data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh" title="curl -fsSL https://tryhermes.pages.dev/install | sh">
-          <span class="prompt">$</span>
-          <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
-          <button type="button" class="copy" aria-label="Copy install command">Copy</button>
+    <main id="top">
+      <section class="hero">
+        <p class="badge">Open source · local-first · MIT</p>
+        <h1>Don’t start the next chat from zero.</h1>
+        <p class="lede">
+          When one coding agent stops, Hermes packs the work on your disk and hands it to the next. Same folder. Same
+          machine.
+        </p>
+        <div class="cmd-wrap">
+          <div
+            class="cmd"
+            data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh"
+            title="curl -fsSL https://tryhermes.pages.dev/install | sh"
+          >
+            <span class="prompt">$</span>
+            <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
+            <button type="button" class="copy" aria-label="Copy install command">Copy</button>
+          </div>
+        </div>
+        <div class="cmd-stack">
+          <p class="or">Then, in the project you were actually editing:</p>
+          <div class="cmd" data-copy="hermes handoff cursor antigravity" title="hermes handoff cursor antigravity">
+            <span class="prompt">$</span>
+            <code>hermes handoff cursor antigravity</code>
+            <button type="button" class="copy" aria-label="Copy handoff command">Copy</button>
+          </div>
+        </div>
+        <p class="tools">
+          Claude Code · Codex · Cursor · Cline · Kimi · Antigravity · OpenCode · Pi Agent · Copilot CLI · ZCode ·
+          DeepSeek
+        </p>
+      </section>
+
+      <section class="demo" id="demo">
+        <p class="kicker">Watch a handoff</p>
+        <h2>Cursor stops. Hermes carries it. Antigravity continues.</h2>
+        <p class="lede">This plays by itself. No video.</p>
+
+        <div class="stage" aria-label="Animated handoff demo">
+          <div class="stage-bar">
+            <span class="dot"></span>
+            <span id="sim-agent">cursor</span>
+            <span class="path">~/src/app</span>
+          </div>
+          <pre id="sim" class="stage-body" aria-live="polite"></pre>
+        </div>
+
+        <ol class="beats" id="beats">
+          <li class="on">Cursor</li>
+          <li>Hermes</li>
+          <li>Antigravity</li>
+        </ol>
+      </section>
+
+      <section class="facts band" aria-label="How Hermes behaves">
+        <article>
+          <h3>Name the next stop</h3>
+          <p>One name is the goal.<br />Two names: from, then to.</p>
+        </article>
+        <article>
+          <h3>Stay in this folder</h3>
+          <p>Pack this folder only.<br />Other windows stay out.</p>
+        </article>
+        <article>
+          <h3>Stay on this machine</h3>
+          <p>Work stays on disk.<br />No cloud and no upload.</p>
+        </article>
+      </section>
+
+      <section class="faq band" id="questions">
+        <h2>Things to know.</h2>
+        <dl>
+          <div>
+            <dt>What does Hermes put in the pack?</dt>
+            <dd>
+              Git state, your goal, and a short excerpt from the chat that belongs to this folder. That is the brief the
+              next agent reads.
+            </dd>
+          </div>
+          <div>
+            <dt>Do I paste, or does the next agent open?</dt>
+            <dd>
+              CLI tools such as Claude or Codex start with the pack if they are installed. Cursor and Antigravity get
+              the brief on your clipboard. New chat, paste.
+            </dd>
+          </div>
+          <div>
+            <dt>How do I pick among many chats?</dt>
+            <dd>
+              <code>hermes list --here</code> shows sessions for this folder. Pass <code>--id</code> on handoff to
+              choose one instead of the newest.
+            </dd>
+          </div>
+          <div>
+            <dt>Does anything leave my machine?</dt>
+            <dd>
+              No. Hermes does not upload the repo, open an account, or talk to a model. It writes a folder next to your
+              project.
+            </dd>
+          </div>
+          <div>
+            <dt>Does it merge two agents into one history?</dt>
+            <dd>
+              No. One agent at a time. Hermes carries the work across. It does not blend two transcripts into a single
+              native session.
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="install" id="install">
+        <h2>Install</h2>
+        <p class="lede">macOS and Linux. One binary. No npm.</p>
+        <div class="cmd-wrap">
+          <div
+            class="cmd"
+            data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh"
+            title="curl -fsSL https://tryhermes.pages.dev/install | sh"
+          >
+            <span class="prompt">$</span>
+            <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
+            <button type="button" class="copy" aria-label="Copy install command">Copy</button>
+          </div>
+        </div>
+        <p class="fine">
+          New terminal, then <code>hermes doctor</code>. If it is not found:
+          <code>export PATH="$HOME/.local/bin:$PATH"</code>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div>
+            <p class="logo">hermes</p>
+            <p class="tag">Named for the messenger of the gods. The work travels. The agents do not merge.</p>
+          </div>
+        </div>
+        <div class="foot-actions">
+          <a class="btn light" href="https://github.com/Vinyl-Davyl/hermes">Star on GitHub</a>
+          <a class="btn ghost" href="https://github.com/Vinyl-Davyl/hermes/blob/main/docs/quickstart.md"
+            >Read the docs</a
+          >
         </div>
       </div>
-      <p class="or">Then, in the project you were actually editing:</p>
-      <div class="cmd-wrap">
-        <div class="cmd" data-copy="hermes handoff cursor antigravity" title="hermes handoff cursor antigravity">
-          <span class="prompt">$</span>
-          <code>hermes handoff cursor antigravity</code>
-          <button type="button" class="copy" aria-label="Copy handoff command">Copy</button>
-        </div>
+      <div class="foot-meta">
+        <span>Local-first messenger for coding agents</span>
+        <a href="https://tryhermes.pages.dev">tryhermes.pages.dev</a>
+        <a href="https://github.com/Vinyl-Davyl/hermes">github.com/Vinyl-Davyl/hermes</a>
       </div>
-      <p class="tools">
-        Claude Code · Codex · Cursor · Cline · Kimi · Antigravity · OpenCode · Pi Agent · Copilot CLI · ZCode · DeepSeek
-      </p>
-    </section>
+    </footer>
 
-    <section class="demo" id="demo">
-      <p class="kicker">Watch a handoff</p>
-      <h2>Cursor stops. Hermes carries it. Antigravity continues.</h2>
-      <p class="lede">This plays by itself. No video.</p>
-
-      <div class="stage" aria-label="Animated handoff demo">
-        <div class="stage-bar">
-          <span class="dot"></span>
-          <span id="sim-agent">cursor</span>
-          <span class="path">~/src/app</span>
-        </div>
-        <pre id="sim" class="stage-body" aria-live="polite"></pre>
-      </div>
-
-      <ol class="beats" id="beats">
-        <li class="on">Cursor</li>
-        <li>Hermes</li>
-        <li>Antigravity</li>
-      </ol>
-    </section>
-
-    <section class="facts" aria-label="How Hermes behaves">
-      <article>
-        <h3>Name the destination</h3>
-        <p>One name is where you are going. Two names are from, then to. That is the rule.</p>
-      </article>
-      <article>
-        <h3>Bound to this folder</h3>
-        <p>Only a chat from this repo is packed. Other windows and other projects stay out.</p>
-      </article>
-      <article>
-        <h3>Kept on this machine</h3>
-        <p>The pack stays on your disk. No MCP, no plugin, no account, and nothing leaves.</p>
-      </article>
-    </section>
-
-    <section class="faq" id="questions">
-      <h2>Fair questions.</h2>
-      <dl>
-        <div>
-          <dt>What does Hermes put in the pack?</dt>
-          <dd>Git state, your goal, and a short excerpt from the chat that belongs to this folder. That is the brief the next agent reads.</dd>
-        </div>
-        <div>
-          <dt>Do I paste, or does the next agent open?</dt>
-          <dd>CLI tools such as Claude or Codex start with the pack if they are installed. Cursor and Antigravity get the brief on your clipboard. New chat, paste.</dd>
-        </div>
-        <div>
-          <dt>How do I pick among many chats?</dt>
-          <dd><code>hermes list --here</code> shows sessions for this folder. Pass <code>--id</code> on handoff to choose one instead of the newest.</dd>
-        </div>
-        <div>
-          <dt>Does anything leave my machine?</dt>
-          <dd>No. Hermes does not upload the repo, open an account, or talk to a model. It writes a folder next to your project.</dd>
-        </div>
-        <div>
-          <dt>Does it merge two agents into one history?</dt>
-          <dd>No. One agent at a time. Hermes carries the work across. It does not blend two transcripts into a single native session.</dd>
-        </div>
-      </dl>
-    </section>
-
-    <section class="install" id="install">
-      <h2>Install</h2>
-      <p class="lede">macOS and Linux. One binary. No npm.</p>
-      <div class="cmd-wrap">
-        <div class="cmd" data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh" title="curl -fsSL https://tryhermes.pages.dev/install | sh">
-          <span class="prompt">$</span>
-          <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
-          <button type="button" class="copy" aria-label="Copy install command">Copy</button>
-        </div>
-      </div>
-      <p class="fine">New terminal, then <code>hermes doctor</code>. If it is not found: <code>export PATH="$HOME/.local/bin:$PATH"</code></p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="foot-top">
-      <div>
-        <p class="logo">hermes</p>
-        <p class="tag">Pack it. Hand it over. Keep going.</p>
-      </div>
-      <div class="foot-actions">
-        <a class="btn light" href="https://github.com/Vinyl-Davyl/hermes">Star on GitHub</a>
-        <a class="btn ghost" href="https://github.com/Vinyl-Davyl/hermes/blob/main/docs/quickstart.md">Read the docs</a>
-      </div>
-    </div>
-    <div class="foot-meta">
-      <span>Local-first messenger for coding agents</span>
-      <a href="https://tryhermes.pages.dev">tryhermes.pages.dev</a>
-      <a href="https://github.com/Vinyl-Davyl/hermes">github.com/Vinyl-Davyl/hermes</a>
-    </div>
-  </footer>
-
-  <script src="sim.js"></script>
-</body>
+    <script src="sim.js"></script>
+  </body>
 </html>
