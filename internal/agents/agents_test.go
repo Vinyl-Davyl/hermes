@@ -35,6 +35,32 @@ func TestAllIncludesNewAgents(t *testing.T) {
 	}
 }
 
+func TestSameProjectIgnoresOtherRepos(t *testing.T) {
+	cwd := "/Users/mac/Documents/GitHub/Hermes"
+	foreign := Session{
+		Agent: "claude",
+		ID:    "deum",
+		Title: "Use the claude_design MCP",
+		Path:  "/Users/mac/.claude/projects/-Users-mac-Desktop-credo-portal-deum-credo-client/83068cb9.jsonl",
+	}
+	here := Session{
+		Agent: "claude",
+		ID:    "local",
+		Title: "work on hermes",
+		Path:  "/Users/mac/.claude/projects/-Users-mac-Documents-GitHub-Hermes/abc.jsonl",
+	}
+	cursorHere := Session{Agent: "cursor", ID: "ws", Title: "Hermes", Path: "/tmp/state.vscdb"}
+	if SameProject(foreign, cwd) {
+		t.Fatal("must not take a session from another project")
+	}
+	if !SameProject(here, cwd) {
+		t.Fatal("must take the Claude project for this folder")
+	}
+	if !SameProject(cursorHere, cwd) {
+		t.Fatal("cursor title Hermes should match this folder")
+	}
+}
+
 func TestFilter(t *testing.T) {
 	sessions := []Session{
 		{Agent: "claude", ID: "1", Title: "Fix JWT", Path: "/Users/mac/.claude/projects/-Users-mac-src/1.jsonl"},

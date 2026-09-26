@@ -27,8 +27,13 @@
     <p class="lede">
       You can retype the last two hours. Or you can hand the work over:
     </p>
-    <div class="cmd" data-copy="hermes handoff claude">
-      <span class="prompt">$</span> hermes handoff claude
+    <div class="cmd" data-copy="curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh">
+      <span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+      <button type="button" class="copy">copy</button>
+    </div>
+    <p class="after">Then: <code>hermes handoff cursor antigravity</code></p>
+    <div class="cmd" data-copy="hermes handoff cursor antigravity">
+      <span class="prompt">$</span> hermes handoff cursor antigravity
       <button type="button" class="copy">copy</button>
     </div>
     <p class="after">
@@ -48,10 +53,16 @@
       <span>ZCode</span>
       <span>DeepSeek</span>
     </div>
-    <p class="fine">Any of these can be the source. Any of these can be the destination.</p>
+    <p class="fine">No MCP. No plugin. No cloud. One Go binary. Any of these can be the source or the destination.</p>
   </section>
 
   <section class="stage" id="demo">
+    <p class="lede">Cursor hits a wall. One command. Antigravity continues.</p>
+    <!--
+    <video class="demo-vid" controls playsinline>
+      <source src="handoff.mp4" type="video/mp4" />
+    </video>
+    -->
     <div class="split">
       <article class="pane">
         <header><i></i><span>claude</span> · ~/src/app</header>
@@ -132,25 +143,20 @@ opened  claude (seeded)
         <dd>No. No npm skill, no MCP, no upload. One Go binary.</dd>
       </div>
       <div>
-        <dt>Do I need npm or a global publish?</dt>
-        <dd>No. Go makes a program file. <code>make install</code> puts that file on your PATH. People do not install Hermes from npm.</dd>
+        <dt>Do I need npm?</dt>
+        <dd>No. One Go binary. The install command puts it on your PATH.</dd>
       </div>
     </dl>
   </section>
 
   <section id="install">
-    <h2>Put it on this computer.</h2>
-    <p class="lede">You already have the source. You do not publish anything. You copy one file named <code>hermes</code> into a folder your terminal already searches.</p>
-    <div class="cmd" data-copy="make install">
-      <span class="prompt">$</span> make install
+    <h2>Install</h2>
+    <p class="lede">One binary. No npm. No plugin.</p>
+    <div class="cmd" data-copy="curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh">
+      <span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
       <button type="button" class="copy">copy</button>
     </div>
-    <p class="after">Then open a <strong>new</strong> terminal and type <code>hermes doctor</code>. If zsh says command not found, your PATH is missing <code>~/.local/bin</code>:</p>
-    <div class="cmd" data-copy="export PATH=&quot;$HOME/.local/bin:$PATH&quot;">
-      <span class="prompt">$</span> export PATH="$HOME/.local/bin:$PATH"
-      <button type="button" class="copy">copy</button>
-    </div>
-    <p class="fine">Until you add that line to <code>~/.zshrc</code>, only that terminal window knows about <code>hermes</code>. <code>./bin/hermes</code> always works from this folder.</p>
+    <p class="fine">New terminal, then <code>hermes doctor</code>. If it is not found: <code>export PATH="$HOME/.local/bin:$PATH"</code></p>
   </section>
 
   <footer>

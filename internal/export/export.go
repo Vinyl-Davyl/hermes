@@ -138,22 +138,23 @@ func pickTranscript(from, explicit, sessionID, gitRoot string) (*agents.Transcri
 		return t, warnings, nil
 	}
 
-	// Auto: prefer Claude project matching this repo, then any recent session.
 	if claude, ok := agents.ByID("claude"); ok {
-		if t, _ := latestFor(claude, gitRoot); t != nil {
+		if t, warn := latestFor(claude, gitRoot); t != nil {
+			warnings = append(warnings, warn...)
 			return t, warnings, nil
 		}
 	}
 	all, _ := agents.DiscoverAll()
-	if len(all) == 0 {
-		warnings = append(warnings, "no agent sessions found; pack is git-only (this is fine)")
+	here := agents.Filter(all, "", gitRoot)
+	if len(here) == 0 {
+		warnings = append(warnings, "no agent session for this folder; pack is git-only (this is fine). Use --id to pick a chat from another project")
 		return nil, warnings, nil
 	}
-	ag, ok := agents.ByID(all[0].Agent)
+	ag, ok := agents.ByID(here[0].Agent)
 	if !ok {
 		return nil, warnings, nil
 	}
-	t, err := ag.Read(all[0].Path)
+	t, err := ag.Read(here[0].Path)
 	if err != nil {
 		warnings = append(warnings, "could not read latest session: "+err.Error())
 		return nil, warnings, nil
@@ -170,20 +171,24 @@ func latestFor(ag agents.Agent, gitRoot string) (*agents.Transcript, []string) {
 	}
 	sort.Slice(found, func(i, j int) bool { return found[i].Modified.After(found[j].Modified) })
 
-	pick := found[0]
+	here := found
 	if gitRoot != "" {
-		if here := agents.Filter(found, "", gitRoot); len(here) > 0 {
-			pick = here[0]
-		} else if ag.ID() == "claude" {
+		here = agents.Filter(found, "", gitRoot)
+		if len(here) == 0 && ag.ID() == "claude" {
 			want := agents.ClaudeProjectDir(gitRoot)
 			for _, s := range found {
 				if filepathHasPrefix(s.Path, want) {
-					pick = s
+					here = []agents.Session{s}
 					break
 				}
 			}
 		}
 	}
+	if len(here) == 0 {
+		warnings = append(warnings, fmt.Sprintf("no %s session for this folder (other projects were ignored). Pack is git-only, or pass --id", ag.Name()))
+		return nil, warnings
+	}
+	pick := here[0]
 
 	t, err := ag.Read(pick.Path)
 	if err != nil {
