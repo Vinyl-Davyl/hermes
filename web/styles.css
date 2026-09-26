@@ -130,6 +130,7 @@ h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
   white-space: pre-wrap;
 }
 .caption { margin: 0.9rem 0 0; font-size: 0.95rem; }
+.demo-vid { width: 100%; max-width: 1100px; border-radius: 14px; background: #111; margin-bottom: 1rem; }
 
 .ways {
   display: grid;

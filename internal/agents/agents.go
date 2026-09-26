@@ -259,24 +259,14 @@ func fileExists(path string) bool {
 func Filter(sessions []Session, query, cwd string) []Session {
 	query = strings.ToLower(strings.TrimSpace(query))
 	cwd = strings.TrimSpace(cwd)
-	encoded := ""
-	base := ""
-	if cwd != "" {
-		encoded = strings.ToLower(EncodeClaudeProject(cwd))
-		base = strings.ToLower(filepath.Base(cwd))
-	}
 	var out []Session
 	for _, s := range sessions {
 		blob := strings.ToLower(s.Title + " " + s.ID + " " + s.Path)
 		if query != "" && !strings.Contains(blob, query) {
 			continue
 		}
-		if cwd != "" {
-			low := strings.ToLower(s.Path)
-			if !strings.Contains(low, encoded) && !strings.Contains(low, strings.ToLower(cwd)) &&
-				(base == "" || !strings.Contains(low, base)) && !strings.Contains(strings.ToLower(s.Title), base) {
-				continue
-			}
+		if cwd != "" && !SameProject(s, cwd) {
+			continue
 		}
 		out = append(out, s)
 	}
@@ -301,4 +291,29 @@ func Find(sessions []Session, q string) (Session, bool) {
 		}
 	}
 	return Session{}, false
+}
+
+// SameProject reports whether a session belongs to this working tree.
+// A chat from another repo on the same machine must not match.
+func SameProject(s Session, cwd string) bool {
+	cwd = filepath.Clean(strings.TrimSpace(cwd))
+	if cwd == "" || cwd == "." || cwd == string(filepath.Separator) {
+		return false
+	}
+	lowPath := strings.ToLower(filepath.ToSlash(s.Path))
+	lowCwd := strings.ToLower(filepath.ToSlash(cwd))
+	enc := strings.ToLower(EncodeClaudeProject(cwd))
+	if enc != "" && strings.Contains(lowPath, strings.ToLower("-"+enc)) {
+		return true
+	}
+	if enc != "" && strings.Contains(lowPath, enc) {
+		return true
+	}
+	if lowCwd != "" && strings.Contains(lowPath, lowCwd) {
+		return true
+	}
+	if s.Agent == "cursor" && strings.EqualFold(strings.TrimSpace(s.Title), filepath.Base(cwd)) {
+		return true
+	}
+	return false
 }
