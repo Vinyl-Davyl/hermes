@@ -1,45 +1,44 @@
-# Film a demo (Catchup-style, Hermes commands)
+# Film the 30-second demo
 
-Record from a **real git repo** (not this Hermes folder if it has no `.git`). A dirty tree looks better on camera.
+One project. Two windows. One command.
 
-## 30-second A-roll
+## Setup
 
-1. Terminal left: pretend Claude just died (or use a real `claude` session).
-2. Terminal right:
+- Use a **real app repo** you already have (not an empty folder).
+- Window A: **Cursor**, that repo open, a chat mid-task (“fix the flaky auth test”).
+- Window B: a normal terminal, `cd` to the **same** repo.
+- Window C (after the command): **Antigravity**, same repo.
+
+Do not open Credo, Hermes, and your portfolio at once. Hermes now only packs this folder.
+
+## What you type (Window B)
 
 ```bash
 hermes doctor
-hermes list
-hermes handoff claude -m "fix the flaky auth test"
+hermes handoff cursor antigravity -m "fix the flaky auth test"
 ```
 
-If `claude` is installed, it opens already pointed at `.hermes/seed.md`.  
-If not, say on camera: “Claude is not on this machine, so I open Cursor and paste.”
+You should see `from cursor` and `to antigravity`, and `copied PROMPT.md`.
 
-## Cursor on camera
+## What you do in Antigravity
+
+1. Open the same folder.
+2. New chat (do not resume an old one).
+3. Paste (clipboard already has the prompt), or attach `@PROMPT.md`.
+4. Let it pick up the task. Stop recording.
+
+## If you would rather demo Claude
+
+Same setup, but Window C is a terminal with Claude Code:
 
 ```bash
-hermes handoff cursor -m "fix the flaky auth test"
+hermes handoff cursor claude -m "fix the flaky auth test"
 ```
 
-PROMPT.md is on the clipboard. New Cursor chat → paste, or type `@PROMPT.md`.
+If `claude` is on PATH, it starts with the pack. You do not paste.
 
-## Other agents on camera
+## After you have the file
 
-```bash
-hermes handoff cursor claude    # Cursor → Claude
-hermes handoff claude cursor    # Claude → Cursor
-hermes handoff --from none -m "git only demo"
-hermes list --agent cursor
-hermes list -q auth
-```
-
-`--no-open` if you only want the pack, not a launched CLI.
-
-## Do not type this
-
-```bash
-hermes import ./handoff-*
-```
-
-zsh will eat the star. Use `hermes resume`.
+1. Save as `web/handoff.mp4` (keep it under ~15 MB if you can).
+2. Uncomment the `<video>` tag in `web/index.html`.
+3. Add `handoff.mp4` to the `//go:embed` line in `web/embed.go`.

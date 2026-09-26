@@ -1,5 +1,13 @@
 # Quick start
 
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+```
+
+Then `hermes doctor`.
+
 ## The rule
 
 ```text

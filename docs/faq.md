@@ -34,7 +34,11 @@ Catchup never asks you to attach `PROMPT.md`. `catchup fork claude --into codex`
 
 ## Do I have to install Hermes globally?
 
-No. `./bin/hermes` after `go build` is a full CLI. `make install` or `go install ./cmd/hermes` is only so you can type `hermes` from any directory.
+```bash
+curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+```
+
+That puts `hermes` on your PATH. From a checkout, `./bin/hermes` after `go build` is the same program.
 
 ## Why did zsh say `no matches found: ./handoff-*`?
 
