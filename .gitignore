@@ -1,0 +1,15 @@
+/bin/
+/tmp/
+/dist/
+*.exe
+*.test
+*.out
+coverage.out
+.DS_Store
+.env
+.env.*
+!.env.example
+handoff-*/
+*.zip
+catchup-main/
+.hermes/
