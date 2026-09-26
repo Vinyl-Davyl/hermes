@@ -1,6 +1,6 @@
 #!/bin/sh
 # Install the hermes binary to ~/.local/bin (override with HERMES_INSTALL_DIR).
-# Usage:  curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
+# Usage:  curl -fsSL https://tryhermes.pages.dev/install | sh
 set -eu
 
 REPO="Vinyl-Davyl/hermes"
