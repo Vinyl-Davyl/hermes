@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="web/logo.png" width="72" height="72" alt="Hermes">
+</p>
+
 # Hermes
 
 **Local-first CLI for coding-agent context handoff.**
@@ -24,8 +28,6 @@ If the shell says `command not found`:
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
----
-
 ## The only rule
 
 ```text
@@ -43,14 +45,14 @@ hermes handoff claude
 hermes handoff cursor claude
 ```
 
-`hermes handoff cursor` means *go to Cursor*, not *leave Cursor*.
+`hermes handoff cursor` means _go to Cursor_, not _leave Cursor_.
 
-| I am here | I want to continue here | Command |
-|-----------|-------------------------|---------|
-| Cursor (limit hit) | Claude | `hermes handoff claude` |
-| Claude (limit hit) | Cursor | `hermes handoff cursor` |
-| Cursor | Antigravity | `hermes handoff cursor antigravity` |
-| Antigravity | Cursor | `hermes handoff antigravity cursor` |
+| I am here          | I want to continue here | Command                             |
+| ------------------ | ----------------------- | ----------------------------------- |
+| Cursor (limit hit) | Claude                  | `hermes handoff claude`             |
+| Claude (limit hit) | Cursor                  | `hermes handoff cursor`             |
+| Cursor             | Antigravity             | `hermes handoff cursor antigravity` |
+| Antigravity        | Cursor                  | `hermes handoff antigravity cursor` |
 
 Hermes only packs a chat that belongs to **this folder**. Another project (another window, another repo) is ignored. If nothing here matches, the pack is git-only. Pass `--id` to pick a specific chat.
 
@@ -59,8 +61,6 @@ After the command:
 - **Claude / Codex / OpenCode** (if that CLI is installed): Hermes starts it with the pack.
 - **Cursor / Antigravity**: prompt is on the clipboard. New chat → paste.
 
----
-
 ## Many chats?
 
 ```bash
@@ -68,18 +68,16 @@ hermes list --agent cursor --here
 hermes handoff cursor antigravity --id e1884976
 ```
 
----
-
 ## Commands
 
-| Command | What it does |
-|---------|----------------|
+| Command                      | What it does                  |
+| ---------------------------- | ----------------------------- |
 | `hermes handoff [from] [to]` | Pack + send to the next agent |
-| `hermes resume [to]` | Reuse the latest pack |
-| `hermes list` | Sessions for this machine |
-| `hermes list --here` | Sessions for this folder |
-| `hermes doctor` | What Hermes can see |
-| `hermes site` | Local landing page |
+| `hermes resume [to]`         | Reuse the latest pack         |
+| `hermes list`                | Sessions for this machine     |
+| `hermes list --here`         | Sessions for this folder      |
+| `hermes doctor`              | What Hermes can see           |
+| `hermes site`                | Local landing page            |
 
 ```text
 -m, --message     what you were doing
@@ -88,8 +86,6 @@ hermes handoff cursor antigravity --id e1884976
     --id          session id from hermes list
     --no-open     do not start the next CLI
 ```
-
----
 
 ## Docs
 
