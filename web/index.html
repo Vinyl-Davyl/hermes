@@ -3,185 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hermes — hand work to the next coding agent</title>
-  <meta name="description" content="Local Go CLI. When Claude, Cursor, or Codex dies, pack the work and continue in the next agent. No plugin. No cloud." />
+  <title>Hermes — messenger for coding agents</title>
+  <meta name="description" content="Local CLI that packs unfinished work and hands it to the next coding agent. No plugin. No cloud." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="nav">
-    <span class="logo">hermes<span class="caret">_</span></span>
+    <a class="logo" href="#top">hermes</a>
     <nav>
-      <a href="#how">How</a>
       <a href="#demo">Demo</a>
+      <a href="#questions">Questions</a>
       <a href="#install">Install</a>
       <a href="https://github.com/Vinyl-Davyl/hermes">GitHub</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <h1>Hi.<br />Your coding agent just hit a wall.</h1>
-    <p class="lede">
-      It is late. The fix is half done. Claude says the limit resets at 10pm.
-      Cursor opened a new composer and forgot everything.
-    </p>
-    <p class="lede">
-      You can retype the last two hours. Or you can hand the work over:
-    </p>
-    <div class="cmd" data-copy="curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh">
-      <span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
-      <button type="button" class="copy">copy</button>
-    </div>
-    <p class="after">Then: <code>hermes handoff cursor antigravity</code></p>
-    <div class="cmd" data-copy="hermes handoff cursor antigravity">
-      <span class="prompt">$</span> hermes handoff cursor antigravity
-      <button type="button" class="copy">copy</button>
-    </div>
-    <p class="after">
-      Claude opens, already holding the pack. That is the handoff.
-      Cursor, Codex, Cline, Antigravity, and the rest work the same way.
-    </p>
-    <div class="pills">
-      <span>Claude Code</span>
-      <span>Codex</span>
-      <span>Cursor</span>
-      <span>Cline</span>
-      <span>Kimi</span>
-      <span>Antigravity</span>
-      <span>OpenCode</span>
-      <span>Pi Agent</span>
-      <span>Copilot CLI</span>
-      <span>ZCode</span>
-      <span>DeepSeek</span>
-    </div>
-    <p class="fine">No MCP. No plugin. No cloud. One Go binary. Any of these can be the source or the destination.</p>
-  </section>
-
-  <section class="stage" id="demo">
-    <p class="lede">Cursor hits a wall. One command. Antigravity continues.</p>
-    <!--
-    <video class="demo-vid" controls playsinline>
-      <source src="handoff.mp4" type="video/mp4" />
-    </video>
-    -->
-    <div class="split">
-      <article class="pane">
-        <header><i></i><span>claude</span> · ~/src/app</header>
-        <pre>› fix the flaky auth test
-
-● Found the refresh-token race.
-  Two goroutines refresh at once.
-
-● Guarded it with a mutex.
-
-✗ You've reached your 5-hour limit.
-  Resets at 10:00 PM.
-
-  (session paused)</pre>
-      </article>
-      <article class="pane">
-        <header><i></i><span>hermes → claude</span> · ~/src/app</header>
-        <pre>$ hermes handoff claude
-
-packed  ./handoff-20260926T153022
-from    cursor
-to      claude
-opened  claude (seeded)
-
-● Continue from the Hermes pack.
-  Read .hermes/seed.md first.
-
-● Mutex is in. Writing the test.</pre>
-      </article>
-    </div>
-    <p class="caption">The 4pm case. One command. The next agent already knows the work.</p>
-  </section>
-
-  <section id="how">
-    <h2>Three ways back in.</h2>
-    <p class="lede">Whatever state you are in, one short command.</p>
-    <div class="ways">
-      <article>
-        <h3>Pack</h3>
-        <p>Git state, your goal, and a session excerpt in one folder. This is the work, not a composer id.</p>
-        <div class="cmd" data-copy="hermes handoff">
-          <span class="prompt">$</span> hermes handoff
-          <button type="button" class="copy">copy</button>
+  <main id="top">
+    <section class="hero">
+      <p class="badge">Open source · local-first · MIT</p>
+      <h1>Don’t start the next chat from zero.</h1>
+      <p class="lede">
+        When one coding agent stops, Hermes packs the work on your disk
+        and hands it to the next. Same folder. Same machine.
+      </p>
+      <div class="cmd-wrap">
+        <div class="cmd" data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh" title="curl -fsSL https://tryhermes.pages.dev/install | sh">
+          <span class="prompt">$</span>
+          <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
+          <button type="button" class="copy" aria-label="Copy install command">Copy</button>
         </div>
+      </div>
+      <p class="or">Then, in the project you were actually editing:</p>
+      <div class="cmd-wrap">
+        <div class="cmd" data-copy="hermes handoff cursor antigravity" title="hermes handoff cursor antigravity">
+          <span class="prompt">$</span>
+          <code>hermes handoff cursor antigravity</code>
+          <button type="button" class="copy" aria-label="Copy handoff command">Copy</button>
+        </div>
+      </div>
+      <p class="tools">
+        Claude Code · Codex · Cursor · Cline · Kimi · Antigravity · OpenCode · Pi Agent · Copilot CLI · ZCode · DeepSeek
+      </p>
+    </section>
+
+    <section class="demo" id="demo">
+      <p class="kicker">Watch a handoff</p>
+      <h2>Cursor stops. Hermes carries it. Antigravity continues.</h2>
+      <p class="lede">This plays by itself. No video.</p>
+
+      <div class="stage" aria-label="Animated handoff demo">
+        <div class="stage-bar">
+          <span class="dot"></span>
+          <span id="sim-agent">cursor</span>
+          <span class="path">~/src/app</span>
+        </div>
+        <pre id="sim" class="stage-body" aria-live="polite"></pre>
+      </div>
+
+      <ol class="beats" id="beats">
+        <li class="on">Cursor</li>
+        <li>Hermes</li>
+        <li>Antigravity</li>
+      </ol>
+    </section>
+
+    <section class="facts" aria-label="How Hermes behaves">
+      <article>
+        <h3>Name the destination</h3>
+        <p>One name is where you are going. Two names are from, then to. That is the rule.</p>
       </article>
       <article>
-        <h3>Find</h3>
-        <p>See what Hermes can see on this machine. Search. You do not need every agent installed.</p>
-        <div class="cmd" data-copy="hermes list -q auth">
-          <span class="prompt">$</span> hermes list -q auth
-          <button type="button" class="copy">copy</button>
-        </div>
+        <h3>Bound to this folder</h3>
+        <p>Only a chat from this repo is packed. Other windows and other projects stay out.</p>
       </article>
       <article>
-        <h3>Open</h3>
-        <p>CLI agents (Claude, Codex, OpenCode…) start with the pack. Cursor gets the prompt on your clipboard — new chat, paste or @PROMPT.md.</p>
-        <div class="cmd" data-copy="hermes handoff claude cursor">
-          <span class="prompt">$</span> hermes handoff claude cursor
-          <button type="button" class="copy">copy</button>
-        </div>
+        <h3>Bound to this machine</h3>
+        <p>The pack stays on your disk. No MCP, no plugin, no account, and no upload.</p>
       </article>
-    </div>
-  </section>
+    </section>
 
-  <section class="faq">
-    <h2>Why is this not Catchup?</h2>
-    <dl>
-      <div>
-        <dt>Do I paste PROMPT.md?</dt>
-        <dd>For Claude, Codex, OpenCode, Pi, Copilot, Cline: no, if that CLI is installed. Hermes starts it and points it at <code>.hermes/seed.md</code>. For Cursor and other editors: yes — they cannot import a native session. The pack <em>is</em> the continue path. Catchup does the same thing under another name: they seed a CLI, or they make you paste.</dd>
-      </div>
-      <div>
-        <dt>Does it merge two agents into one history?</dt>
-        <dd>No. One agent at a time. A handoff, not a blender.</dd>
-      </div>
-      <div>
-        <dt>Does anything leave my machine?</dt>
-        <dd>No. No npm skill, no MCP, no upload. One Go binary.</dd>
-      </div>
-      <div>
-        <dt>Do I need npm?</dt>
-        <dd>No. One Go binary. The install command puts it on your PATH.</dd>
-      </div>
-    </dl>
-  </section>
+    <section class="faq" id="questions">
+      <h2>Fair questions.</h2>
+      <dl>
+        <div>
+          <dt>What does Hermes put in the pack?</dt>
+          <dd>Git state, your goal, and a short excerpt from the chat that belongs to this folder. That is the brief the next agent reads.</dd>
+        </div>
+        <div>
+          <dt>Do I paste, or does the next agent open?</dt>
+          <dd>CLI tools such as Claude or Codex start with the pack if they are installed. Cursor and Antigravity get the brief on your clipboard. New chat, paste.</dd>
+        </div>
+        <div>
+          <dt>How do I pick among many chats?</dt>
+          <dd><code>hermes list --here</code> shows sessions for this folder. Pass <code>--id</code> on handoff to choose one instead of the newest.</dd>
+        </div>
+        <div>
+          <dt>Does anything leave my machine?</dt>
+          <dd>No. Hermes does not upload the repo, open an account, or talk to a model. It writes a folder next to your project.</dd>
+        </div>
+        <div>
+          <dt>Does it merge two agents into one history?</dt>
+          <dd>No. One agent at a time. Hermes carries the work across. It does not blend two transcripts into a single native session.</dd>
+        </div>
+      </dl>
+    </section>
 
-  <section id="install">
-    <h2>Install</h2>
-    <p class="lede">One binary. No npm. No plugin.</p>
-    <div class="cmd" data-copy="curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh">
-      <span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/Vinyl-Davyl/hermes/main/scripts/install.sh | sh
-      <button type="button" class="copy">copy</button>
-    </div>
-    <p class="fine">New terminal, then <code>hermes doctor</code>. If it is not found: <code>export PATH="$HOME/.local/bin:$PATH"</code></p>
-  </section>
+    <section class="install" id="install">
+      <h2>Install</h2>
+      <p class="lede">macOS and Linux. One binary. No npm.</p>
+      <div class="cmd-wrap">
+        <div class="cmd" data-copy="curl -fsSL https://tryhermes.pages.dev/install | sh" title="curl -fsSL https://tryhermes.pages.dev/install | sh">
+          <span class="prompt">$</span>
+          <code>curl -fsSL https://tryhermes.pages.dev/install | sh</code>
+          <button type="button" class="copy" aria-label="Copy install command">Copy</button>
+        </div>
+      </div>
+      <p class="fine">New terminal, then <code>hermes doctor</code>. If it is not found: <code>export PATH="$HOME/.local/bin:$PATH"</code></p>
+    </section>
+  </main>
 
   <footer>
-    <div>
-      <p class="logo">hermes<span class="caret">_</span></p>
-      <p>Named for the messenger of the gods. Pack it. Hand it over.</p>
+    <div class="foot-top">
+      <div>
+        <p class="logo">hermes</p>
+        <p class="tag">Pack it. Hand it over. Keep going.</p>
+      </div>
+      <div class="foot-actions">
+        <a class="btn light" href="https://github.com/Vinyl-Davyl/hermes">Star on GitHub</a>
+        <a class="btn ghost" href="https://github.com/Vinyl-Davyl/hermes/blob/main/docs/quickstart.md">Read the docs</a>
+      </div>
     </div>
-    <div class="foot-links">
-      <a href="https://github.com/Vinyl-Davyl/hermes">Star on GitHub</a>
-      <a href="#install">Install</a>
+    <div class="foot-meta">
+      <span>Local-first messenger for coding agents</span>
+      <a href="https://tryhermes.pages.dev">tryhermes.pages.dev</a>
+      <a href="https://github.com/Vinyl-Davyl/hermes">github.com/Vinyl-Davyl/hermes</a>
     </div>
   </footer>
 
-  <script>
-    document.querySelectorAll(".cmd").forEach(function (el) {
-      var btn = el.querySelector(".copy");
-      if (!btn) return;
-      btn.addEventListener("click", function () {
-        var text = el.getAttribute("data-copy") || "";
-        navigator.clipboard.writeText(text).then(function () {
-          btn.textContent = "copied";
-          setTimeout(function () { btn.textContent = "copy"; }, 1200);
-        });
-      });
-    });
-  </script>
+  <script src="sim.js"></script>
 </body>
 </html>
