@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="web/logo.png" width="72" height="72" alt="Hermes">
 </p>
 
