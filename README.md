@@ -95,6 +95,6 @@ The token after the date is the id. A prefix is enough. Without `--id`, Hermes t
 - [Quick start](docs/quickstart.md)
 - [Supported tools](docs/supported-tools.md)
 - [FAQ](docs/faq.md)
-- [Full docs on the site](https://tryhermes.pages.dev/docs.html)
+- [Full docs on the site](https://tryhermes.pages.dev/docs)
 
 MIT
