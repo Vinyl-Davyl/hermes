@@ -1,7 +1,8 @@
 import { cpSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const out = join(import.meta.dirname, "..", "out");
+const out = join(dirname(fileURLToPath(import.meta.url)), "..", "out");
 const flat = join(out, "docs.html");
 const nested = join(out, "docs", "index.html");
 
