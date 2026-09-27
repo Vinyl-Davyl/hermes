@@ -1,5 +1,5 @@
 <div align="center">
-<img src="web/logo.png" width="72" height="72" alt="Hermes">
+<img src="web/public/logo.png" width="72" height="72" alt="Hermes">
 <h1>Hermes</h1>
 <p><strong>Local-first CLI for coding-agent context handoff.</strong></p>
 <p>Named for the messenger of the gods. Pack the work. Open the next chat. Keep going.</p>
@@ -95,6 +95,6 @@ The token after the date is the id. A prefix is enough. Without `--id`, Hermes t
 - [Quick start](docs/quickstart.md)
 - [Supported tools](docs/supported-tools.md)
 - [FAQ](docs/faq.md)
-- [Full docs on the site](https://tryhermes.pages.dev/docs.html)
+- [Full docs on the site](https://tryhermes.pages.dev/docs)
 
 MIT

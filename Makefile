@@ -1,12 +1,20 @@
 PREFIX ?= $(HOME)/.local
 BIN := bin/hermes
 
-.PHONY: test build install go-install site landing pages-assets clean
+.PHONY: test build web dev install go-install site landing pages-assets clean
 
 test:
 	go test ./...
 
+dev:
+	npm --prefix web run dev
+
+web:
+	npm --prefix web ci
+	npm --prefix web run build
+
 build:
+	@test -f web/out/index.html || $(MAKE) web
 	go build -o $(BIN) ./cmd/hermes
 
 install: build
@@ -24,8 +32,8 @@ site: build
 landing: site
 
 pages-assets:
-	cp scripts/install.sh web/install
-	cp scripts/install.sh web/install.sh
+	cp scripts/install.sh web/public/install
+	cp scripts/install.sh web/public/install.sh
 
 clean:
-	rm -rf bin
+	rm -rf bin web/.next web/out
