@@ -18,8 +18,12 @@ Hermes **reads** sessions when it can. It **never writes** into an editor databa
 
 Aliases: `claude-code` → `claude`, `codex-cli` → `codex`, `open-code` → `opencode`, `agy` → `antigravity`, `dsh` → `deepseek`.
 
-`--from none` skips all session readers.
+There is no `vscode` agent. VS Code chat and the Claude desktop/web app use the same paste path as Cursor: `--no-open --copy`.
+
+`--from none` skips all session readers (git-only pack).
 
 `--from auto` prefers a Claude session for this repo, then the newest session of any kind.
+
+`hermes doctor` shows which of these Hermes can see on this machine.
 
 If a path is wrong on your OS, handoff still succeeds with git. Open an issue with the real directory.

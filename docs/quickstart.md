@@ -30,7 +30,33 @@ Antigravity → Cursor:
 hermes handoff antigravity cursor
 ```
 
-Many chats? `hermes list --agent cursor --here` then `--id` on the one you want.
+## Pick a chat
+
+```bash
+hermes list --here
+hermes list --agent cursor --here -q keyword
+hermes handoff cursor claude --id e188
+```
+
+A prefix of the id is enough. `hermes list` without `--here` is every session on this machine.
+
+## Resume
+
+```bash
+hermes resume
+hermes resume cursor
+hermes resume --print
+```
+
+`--print` prints `PROMPT.md`. Never run `./handoff-*`.
+
+## GUI, not the terminal CLI
+
+```bash
+hermes handoff claude cursor --no-open --copy -m "what you were doing"
+```
+
+Then a new chat in Cursor, the Claude app, or VS Code → paste.
 
 ## Build
 

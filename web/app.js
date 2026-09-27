@@ -391,6 +391,16 @@ var HermesEngine = (function () {
   fit();
   window.addEventListener("resize", fit);
 
+  document.querySelectorAll(".faq").forEach(function (faq) {
+    faq.addEventListener("toggle", function (e) {
+      var t = e.target;
+      if (!t || t.tagName !== "DETAILS" || !t.open) return;
+      faq.querySelectorAll("details").forEach(function (d) {
+        if (d !== t) d.open = false;
+      });
+    }, true);
+  });
+
   E.start();
 
   function watch(id, name) {

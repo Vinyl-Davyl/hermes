@@ -1,16 +1,12 @@
-<p align="left">
-  <img src="web/logo.png" width="72" height="72" alt="Hermes">
-</p>
-
-# Hermes
-
-**Local-first CLI for coding-agent context handoff.**
-
-Named for the messenger of the gods. Pack the work. Open the next chat. Keep going.
-
-Transfer and resume across **Claude Code, Codex, Cursor, Cline, Kimi, Antigravity, OpenCode, Pi Agent, Copilot CLI, ZCode, and DeepSeek Harness**.
-
-No MCP. No plugin. No cloud. One Go binary.
+<div align="center">
+<img src="web/logo.png" width="72" height="72" alt="Hermes">
+<h1>Hermes</h1>
+<p><strong>Local-first CLI for coding-agent context handoff.</strong></p>
+<p>Named for the messenger of the gods. Pack the work. Open the next chat. Keep going.</p>
+<p>Transfer and resume across <strong>Claude Code, Codex, Cursor, Cline, Kimi, Antigravity, OpenCode, Pi Agent, Copilot CLI, ZCode, and DeepSeek Harness</strong>.</p>
+<p>No MCP. No plugin. No cloud. One Go binary.</p>
+<p><img src="docs/hermes-demo.gif" alt="Hermes handoff demo" width="720"></p>
+</div>
 
 ## Install
 
@@ -60,13 +56,19 @@ After the command:
 
 - **Claude / Codex / OpenCode** (if that CLI is installed): Hermes starts it with the pack.
 - **Cursor / Antigravity**: prompt is on the clipboard. New chat → paste.
+- **Claude app / VS Code**: `hermes handoff claude cursor --no-open --copy`, then paste.
+
+Reuse the latest pack with `hermes resume` or `hermes resume cursor`. Do not type `./handoff-*`.
 
 ## Many chats?
 
 ```bash
 hermes list --agent cursor --here
+hermes list --agent cursor --here -q auth
 hermes handoff cursor antigravity --id e1884976
 ```
+
+The token after the date is the id. A prefix is enough. Without `--id`, Hermes takes the newest chat for this folder.
 
 ## Commands
 
@@ -85,6 +87,7 @@ hermes handoff cursor antigravity --id e1884976
     --to          destination
     --id          session id from hermes list
     --no-open     do not start the next CLI
+    --copy        put PROMPT.md on the clipboard
 ```
 
 ## Docs
@@ -92,5 +95,6 @@ hermes handoff cursor antigravity --id e1884976
 - [Quick start](docs/quickstart.md)
 - [Supported tools](docs/supported-tools.md)
 - [FAQ](docs/faq.md)
+- [Full docs on the site](https://tryhermes.pages.dev/docs.html)
 
 MIT
