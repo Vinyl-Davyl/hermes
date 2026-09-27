@@ -15,3 +15,6 @@ catchup-main/
 .hermes/
 .wrangler/
 hermes-demo.mov
+web/node_modules/
+web/.next/
+web/out/
