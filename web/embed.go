@@ -16,5 +16,11 @@ func Serve(addr string) error {
 	if err != nil {
 		return err
 	}
-	return http.ListenAndServe(addr, http.FileServer(http.FS(sub)))
+	fileServer := http.FileServer(http.FS(sub))
+	return http.ListenAndServe(addr, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/docs" || r.URL.Path == "/docs/" {
+			r.URL.Path = "/docs.html"
+		}
+		fileServer.ServeHTTP(w, r)
+	}))
 }
