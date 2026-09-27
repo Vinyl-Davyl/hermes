@@ -1,0 +1,4 @@
+/install.sh /install 200
+
+/docs /docs.html 200
+/docs/ /docs.html 200
