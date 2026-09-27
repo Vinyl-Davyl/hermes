@@ -11,7 +11,7 @@ export function Header({ page }: { page: "home" | "docs" }) {
           <span>hermes</span>
         </a>
         <nav aria-label="Main">
-          <a href="/docs.html" aria-current={page === "docs" ? "page" : undefined}>Docs</a>
+          <a href="/docs" aria-current={page === "docs" ? "page" : undefined}>Docs</a>
           <a href={page === "home" ? "#install" : "/#install"}>Install</a>
           <a className="gh" href={GH} target="_blank" rel="noopener noreferrer">
             <StarIcon />
@@ -41,7 +41,7 @@ export function Footer({ page }: { page: "home" | "docs" }) {
               Star on GitHub
             </a>
             {page === "home" ? (
-              <a className="btn ghost" href="/docs.html">Read the docs</a>
+              <a className="btn ghost" href="/docs">Read the docs</a>
             ) : (
               <a className="btn ghost" href="/">Back to home</a>
             )}
@@ -52,7 +52,7 @@ export function Footer({ page }: { page: "home" | "docs" }) {
           <nav aria-label="Footer">
             {page === "home" ? (
               <>
-                <a href="/docs.html">Docs</a>
+                <a href="/docs">Docs</a>
                 <a href="#install">Install</a>
               </>
             ) : (
