@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-//go:embed index.html styles.css favicon.svg sim.js
+//go:embed index.html styles.css favicon.svg app.js docs.html fonts
 var Files embed.FS
 
 func Serve(addr string) error {
