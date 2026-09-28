@@ -1,4 +1,6 @@
-# Next.js static export (`npm --prefix web run build`).
+# Next.js static export. Served by Cloudflare Pages and embedded in the binary.
 # Source is web/**/*.tsx. These files stay in git so //go:embed can
-# bake the site into the binary. GitHub should not count them as HTML.
-web/out/** linguist-generated
+# bake the site into the binary.
+web/out/** linguist-generated=true linguist-vendored=true linguist-detectable=false
+web/out/* linguist-generated=true linguist-vendored=true linguist-detectable=false
+*.html linguist-generated=true linguist-vendored=true linguist-detectable=false
