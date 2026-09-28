@@ -20,8 +20,9 @@ import (
 
 func New() *cobra.Command {
 	root := &cobra.Command{
-		Use:   "hermes",
-		Short: "Hand work from one coding agent to the next",
+		Use:     "hermes",
+		Short:   "Hand work from one coding agent to the next",
+		Version: version.String,
 		Long: `Hermes is a local CLI. Pack the git state (and an optional session),
 then resume in Cursor, Claude Code, Codex, or another agent.
 
@@ -37,6 +38,7 @@ No MCP. No plugin. No cloud. You do not need a global install —
 		SilenceUsage:  true,
 		SilenceErrors: true,
 	}
+	root.SetVersionTemplate("hermes {{.Version}}\n")
 	root.AddCommand(
 		handoffCmd(),
 		resumeCmd(),

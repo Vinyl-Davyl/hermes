@@ -8,6 +8,7 @@ import (
 
 	"github.com/Vinyl-Davyl/hermes/internal/agents"
 	"github.com/Vinyl-Davyl/hermes/internal/git"
+	"github.com/Vinyl-Davyl/hermes/internal/version"
 )
 
 type Check struct {
@@ -65,7 +66,7 @@ func Run(cwd string) []Check {
 
 func Format(checks []Check) string {
 	var b strings.Builder
-	b.WriteString("hermes doctor\n\n")
+	fmt.Fprintf(&b, "hermes doctor  %s\n\n", version.String)
 	for _, c := range checks {
 		mark := "✗"
 		if c.OK {
