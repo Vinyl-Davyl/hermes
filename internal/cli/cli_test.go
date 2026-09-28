@@ -1,7 +1,11 @@
 package cli
 
 import (
+	"bytes"
+	"strings"
 	"testing"
+
+	"github.com/Vinyl-Davyl/hermes/internal/version"
 )
 
 func TestParseHandoffArgs(t *testing.T) {
@@ -43,5 +47,22 @@ func TestRootHasHandoff(t *testing.T) {
 	}
 	if !found {
 		t.Fatal("missing handoff command")
+	}
+}
+
+func TestRootVersionFlag(t *testing.T) {
+	root := New()
+	if root.Version != version.String {
+		t.Fatalf("root version %q", root.Version)
+	}
+	var buf bytes.Buffer
+	root.SetOut(&buf)
+	root.SetArgs([]string{"--version"})
+	if err := root.Execute(); err != nil {
+		t.Fatal(err)
+	}
+	got := buf.String()
+	if !strings.Contains(got, "hermes "+version.String) {
+		t.Fatalf("version output %q", got)
 	}
 }
